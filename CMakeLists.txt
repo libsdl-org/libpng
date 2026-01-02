@@ -649,14 +649,22 @@ if(UNIX
   # We are on a Unix or Unix-like toolchain like the GNU toolchain on Windows.
   # Library file names are expected to have an implicit prefix such as "lib".
   # Let CMake prepend and append its usual prefixes and suffixes by default.
-  set(PNG_SHARED_OUTPUT_NAME "png${PNGLIB_ABI_VERSION}")
+  if(WIN32)
+    set(PNG_SHARED_OUTPUT_NAME "png${PNGLIB_ABI_VERSION}-${PNGLIB_ABI_VERSION}")
+  else()
+    set(PNG_SHARED_OUTPUT_NAME "png${PNGLIB_ABI_VERSION}")
+  endif()
   set(PNG_STATIC_OUTPUT_NAME "png${PNGLIB_ABI_VERSION}")
 else()
   # We are, most likely, on a Windows toolchain like MSVC, Clang on Windows,
   # Borland/Embarcadero, etc. We need to specify the "libpng" name explicitly.
   # We also need to use a custom suffix, in order to distinguish between the
   # shared import library name and the static library name.
-  set(PNG_SHARED_OUTPUT_NAME "libpng${PNGLIB_ABI_VERSION}")
+  if(WIN32)
+    set(PNG_SHARED_OUTPUT_NAME "libpng${PNGLIB_ABI_VERSION}-${PNGLIB_ABI_VERSION}")
+  else()
+    set(PNG_SHARED_OUTPUT_NAME "libpng${PNGLIB_ABI_VERSION}")
+  endif()
   set(PNG_STATIC_OUTPUT_NAME "libpng${PNGLIB_ABI_VERSION}_static")
 endif()
 
