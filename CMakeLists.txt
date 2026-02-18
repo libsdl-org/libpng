@@ -705,7 +705,7 @@ if(PNG_SHARED)
                              SYSTEM
                              INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>")
   target_link_libraries(png_shared
-                        PRIVATE $<BUILD_INTERFACE:${PNG_LINK_LIBRARIES}>)
+                        PRIVATE ${PNG_LINK_LIBRARIES})
 endif()
 
 if(PNG_STATIC)
@@ -723,7 +723,7 @@ if(PNG_STATIC)
                              SYSTEM
                              INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>")
   target_link_libraries(png_static
-                        PRIVATE $<BUILD_INTERFACE:${PNG_LINK_LIBRARIES}>)
+                        PRIVATE ${PNG_LINK_LIBRARIES})
 endif()
 
 if(PNG_FRAMEWORK AND NOT APPLE)
@@ -756,7 +756,7 @@ if(PNG_FRAMEWORK)
                              SYSTEM
                              INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/libpng${PNGLIB_ABI_VERSION}>")
   target_link_libraries(png_framework
-                        PRIVATE $<BUILD_INTERFACE:${PNG_LINK_LIBRARIES}>)
+                        PRIVATE ${PNG_LINK_LIBRARIES})
 endif()
 
 if(NOT PNG_LIBRARY_TARGETS)
